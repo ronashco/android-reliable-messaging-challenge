@@ -3,6 +3,7 @@ package com.example.reliablemessaging.service;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.reliablemessaging.BuildConfig;
 import com.example.reliablemessaging.BundleKey;
@@ -63,12 +64,14 @@ public class MessageJobService extends JobService {
             @Override
             public void onError(Throwable e) {
                 Log.i(TAG, "onError: ");
+                Log.i(TAG,"There was an error except HttpException");
             }
 
             @Override
             public void onComplete() {
                 Log.i(TAG, "onComplete: ");
                 // TODO: 8/14/2019 send notification
+                Toast.makeText(getApplicationContext(),"Message successfully sent",Toast.LENGTH_LONG).show();
                 jobFinished(jobParameters, false);
             }
         }));

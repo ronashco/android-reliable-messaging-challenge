@@ -3,6 +3,7 @@ package com.example.reliablemessaging.network;
 import android.util.Log;
 
 import com.google.gson.JsonSyntaxException;
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -18,7 +19,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import retrofit2.HttpException;
 
 /**
  * Created by IT-10 on 10/16/2018.
@@ -47,7 +47,6 @@ public class ApiClient implements Consumer<Throwable> {
 
     @Override
     public void accept(Throwable throwable) throws Exception {
-        Log.i("fahime","accept");
         final Class<?> throwableClass = throwable.getClass();
         // TODO: 8/14/2019 handle other errors here
 
