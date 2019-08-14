@@ -1,2 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.reliablemessaging" />
+    package="com.example.reliablemessaging">
+<uses-permission android:name="android.permission.INTERNET"/>
+    <application>
+
+        <service
+            android:name=".service.MessageJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+
+        </service>
+    </application>
+</manifest>
