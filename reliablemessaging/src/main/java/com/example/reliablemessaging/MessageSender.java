@@ -1,26 +1,20 @@
 package com.example.reliablemessaging;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.PersistableBundle;
 
-import com.example.reliablemessaging.service.MessageJobService;
+import com.example.reliablemessaging.service.MessageService;
 
 import java.util.Map;
 
-class MessageSender {
+public class MessageSender {
     private static MessageSender instance = null;
-
-    private JobInfo.Builder builder;
-    private JobScheduler jobScheduler;
+    private Context context;
 
     private MessageSender(Context context) {
-        ComponentName serviceComponent = new ComponentName(context, MessageJobService.class);
-        builder = new JobInfo.Builder(0, serviceComponent);
-        builder.setOverrideDeadline(3 * 1000);
-        jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        this.context = context;
+
     }
 
     public static void initialize(Context context) {
@@ -34,18 +28,16 @@ class MessageSender {
     }
 
     public static MessageSender getInstance() {
-        if (instance == null) new Exception("fist call initialize");
+        if (instance == null) new Exception("first call initialize");
         return instance;
     }
 
     public void sendMessage(Map<String, String> data) {
+        Intent intent = new Intent(context, MessageService.class);
         for (Map.Entry<String, String> entry : data.entrySet()) {
-            PersistableBundle bundle = new PersistableBundle();
-            bundle.putString(BundleKey.URL, entry.getKey());
-            bundle.putString(BundleKey.DATA, entry.getValue());
-            builder.setExtras(bundle);
-            jobScheduler.schedule(builder.build());
+            intent.putExtra(BundleKey.URL, entry.getKey());
+            intent.putExtra(BundleKey.DATA, entry.getValue());
+            context.startService(intent);
         }
-
     }
 }

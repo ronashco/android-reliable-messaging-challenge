@@ -1,7 +1,9 @@
 package com.example.reliablemessaging.service;
 
+import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MessageJobService extends JobService {
     private static final String TAG = MessageJobService.class.getSimpleName();
     CompositeDisposable disposable = new CompositeDisposable();

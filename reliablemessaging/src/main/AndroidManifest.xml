@@ -9,5 +9,6 @@
             android:permission="android.permission.BIND_JOB_SERVICE">
 
         </service>
+        <service android:name=".service.MessageService"/>
     </application>
 </manifest>
