@@ -6,6 +6,7 @@ import androidx.work.*
 /**
  * This method works with WorkManager API because WorkManager guarantees to do the work.
  */
+@Suppress("DEPRECATION")
 fun post(url: String, data: Map<String, String>): LiveData<WorkInfo> {
 
     // We need internet connection for this
