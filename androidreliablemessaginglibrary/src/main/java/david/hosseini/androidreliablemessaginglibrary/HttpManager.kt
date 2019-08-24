@@ -12,7 +12,7 @@ import retrofit2.http.Url
 object HttpManager {
 
     private var retrofit = Retrofit.Builder()
-        .baseUrl("https://challenge.ronash.co/reliable-messaging/")
+        .baseUrl(SERVER_URL)
         .build()
 
     internal val service: MessagingService = retrofit.create(MessagingService::class.java)
@@ -24,3 +24,5 @@ internal interface MessagingService {
     @FormUrlEncoded
     fun postMessage(@Url url: String, @FieldMap data: Map<String, String>): Call<ResponseBody>
 }
+
+const val SERVER_URL = "https://challenge.ronash.co/reliable-messaging/"
