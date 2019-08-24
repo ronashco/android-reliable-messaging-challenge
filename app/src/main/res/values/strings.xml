@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">android-reliable-messaging-challenge</string>
+    <string name="send">send</string>
+</resources>
